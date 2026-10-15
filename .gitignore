@@ -1,0 +1,21 @@
+# Python / Virtual Environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+
+.idea/
+
+# Logs & Report-Dateien
+log/
+*.log
+report.html
+.pytest_cache/
+htmlcov/
+.coverage
+
+# OS generated files
+.DS_Store
+Thumbs.db
