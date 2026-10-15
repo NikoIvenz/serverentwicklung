@@ -1,0 +1,18 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Auto Server starten (mit TLS)",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "uvicorn",
+            "args": [
+                "auto.fastapi_app:app",
+                "--reload",
+                "--ssl-certfile=src/auto/resources/server.crt",
+                "--ssl-keyfile=src/auto/resources/server.key"
+            ],
+            "justMyCode": true
+        }
+    ]
+}
