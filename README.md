@@ -94,7 +94,7 @@ Error mapping:
 Example:
 
 ```shell
-curl -k -X POST [https://127.0.0.1:8000/rest](https://127.0.0.1:8000/rest) \
+curl -k -X POST https://127.0.0.1:8000/rest \
   -H "Content-Type: application/json" \
   -d '{
         "fin": "WXYZ1234567890123",
