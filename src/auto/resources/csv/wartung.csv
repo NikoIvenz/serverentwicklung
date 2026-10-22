@@ -1,0 +1,10 @@
+id;beschreibung;kosten;auto_id
+1;Inspektion;249.90;1
+2;Oelwechsel;129.50;1
+20;Bremsenpruefung;89.00;20
+30;Reifenwechsel;79.90;30
+31;Hauptuntersuchung (TUEV);145.00;30
+40;Klimaanlagenservice;99.00;40
+50;Scheibenwischer wechseln;35.50;50
+60;Getriebeoelwechsel;210.00;60
+61;Zuendkerzen erneuert;115.00;60
