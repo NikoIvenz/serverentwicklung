@@ -1,0 +1,19 @@
+[server]
+host-binding = "127.0.0.1"
+port = 8000
+
+[tls]
+key = "server.key"
+certificate = "server.crt"
+
+[db]
+dialect = "postgresql"
+username = "auto"
+name = "auto"
+password = "p"
+password-admin = "p"
+host = "localhost"
+log-statements = true
+
+[dev]
+db-populate = true
