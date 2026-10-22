@@ -1,0 +1,4 @@
+CREATE USER auto PASSWORD 'p';
+CREATE DATABASE auto;
+GRANT ALL ON DATABASE auto TO auto;
+CREATE TABLESPACE autospace OWNER auto LOCATION '/tablespace/auto';
