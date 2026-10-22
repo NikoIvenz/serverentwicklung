@@ -32,6 +32,7 @@ dependencies = [
     "tabulate>=0.10.0,<1.0.0",
     "urllib3>=2.8.0,<3.0.0",
     "uvicorn>=0.34.0,<1.0.0",
+    "zttp>=0.0.34",
 ]
 
 [project.scripts]
@@ -54,6 +55,7 @@ dev = [
     "httpx>=0.28.1",
 ]
 lint = [
+    "pyright>=1.1.380,<2.0.0",
     "ruff>=0.9.1,<1.0.0",
     "types-openpyxl>=3.1.5,<4.0.0",
     "types-tabulate>=0.10.0,<1.0.0",
@@ -98,6 +100,12 @@ combine-as-imports = true
 
 [tool.ruff.lint.per-file-ignores]
 "tests/**/*.py" = ["assert", "undocumented-public-function"]
+"src/auto/__init__.py" = ["non-empty-init-module"]
+# SQLAlchemy resolves the annotations at runtime, so these imports must stay real
+"src/auto/entity/*.py" = [
+    "typing-only-standard-library-import",
+    "typing-only-first-party-import",
+]
 
 [tool.ruff.lint.pylint]
 max-statements-in-try = 7
