@@ -41,4 +41,7 @@ class Wartung(Base):
 
     @override
     def __repr__(self) -> str:
-        return f"Wartung(id={self.id}, beschreibung={self.beschreibung}, kosten={self.kosten})"
+        return (
+            f"Wartung(id={self.id}, beschreibung={self.beschreibung}, "
+            f"kosten={self.kosten})"
+        )

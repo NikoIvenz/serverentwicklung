@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 
 
 class Auto(Base):
-    """ORM entity representing a vehicle with 1:1 license plate and 1:N maintenance records."""
+    """ORM entity of a vehicle with a 1:1 license plate and 1:N maintenance records."""
 
     __tablename__ = "auto"
 

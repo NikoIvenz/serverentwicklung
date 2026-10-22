@@ -1,6 +1,7 @@
 """SQLAlchemy engine and session factory configuration."""
 
 from typing import Final
+
 from loguru import logger
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
