@@ -45,28 +45,32 @@ sessions and transactions and returns DTOs, so the ORM entities never leave it.
 - Python 3.13 or newer
 - [uv](https://docs.astral.sh/uv/)
 - Docker (for PostgreSQL)
+- Make (optional, but recommended for convenience)
 
 ## Getting Started
+
+We provide a `Makefile` to simplify common development tasks. Run `make help` to see all available commands.
 
 1. Set up PostgreSQL once as described in [postgres-setup/README.md](postgres-setup/README.md),
    then start it:
 
    ```shell
-   cd postgres-setup
-   docker compose up -d
+   make db-up
    ```
 
 2. Install the dependencies and start the server from the project root:
 
    ```shell
-   uv sync
-   uv run auto            # alternatively: uv run python -m auto
+   make install
+   make run
    ```
 
 3. Open the interactive API documentation: <https://127.0.0.1:8000/docs>
    (accept the certificate warning of the self-signed certificate).
 
 Liveness probe: `GET /health/liveness`.
+
+To stop the database container later, run `make db-down`.
 
 ## REST Interface
 
@@ -90,7 +94,7 @@ Error mapping:
 Example:
 
 ```shell
-curl -k -X POST https://127.0.0.1:8000/rest \
+curl -k -X POST [https://127.0.0.1:8000/rest](https://127.0.0.1:8000/rest) \
   -H "Content-Type: application/json" \
   -d '{
         "fin": "WXYZ1234567890123",
@@ -116,13 +120,20 @@ database credentials and `[dev] db-populate`.
 
 ## Tests and Code Quality
 
-The integration tests need the running PostgreSQL container.
+The integration tests need the running PostgreSQL container (`make db-up`). 
 
+To run tests, linters, and type checks all at once, use:
 ```shell
-uv run pytest          # tests, report.html and htmlcov/
-uv run ruff check
-uv run ruff format
-uv run pyright
+make check
+```
+
+Individual commands:
+```shell
+make test              # tests, report.html and htmlcov/
+make lint              # ruff check
+make format            # fix lint issues and format
+make typecheck         # pyright
+make clean             # remove generated reports and caches
 ```
 
 ## Demonstration
@@ -133,18 +144,18 @@ the server right before the demo to start from a clean state.
 1. **Start the database**
 
    ```shell
-   cd postgres-setup && docker compose up -d && cd ..
+   make db-up
    ```
 
 2. **Automated tests** (covers GET, POST, PUT with optimistic locking, DELETE)
 
    ```shell
-   uv run pytest
+   make test
    ```
 
    Expect `10 passed`. Open `report.html` (test report) and `htmlcov/index.html` (coverage).
 
-3. **Live demo in Swagger UI**: start `uv run auto` and open <https://127.0.0.1:8000/docs>.
+3. **Live demo in Swagger UI**: start `make run` and open <https://127.0.0.1:8000/docs>.
    - `GET /rest/30`: nested license plate and maintenance records, `ETag` response header.
    - `GET /rest?marke=bmw`: search hits with `total_elements` and `total_pages`.
    - `POST /rest` with the example payload above: `201 Created` and `Location: /rest/1000`.
@@ -159,8 +170,8 @@ the server right before the demo to start from a clean state.
 5. **Code quality**
 
    ```shell
-   uv run ruff check
-   uv run pyright
+   make lint
+   make typecheck
    ```
 
    Both report no errors.
